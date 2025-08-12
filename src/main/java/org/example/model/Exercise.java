@@ -1,7 +1,9 @@
-package org.example.modell;
+package org.example.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -10,23 +12,28 @@ import java.util.Optional;
 Gewicht pro Set (optional: int oder double oder Liste<Double>)
 (Optional) Pausenzeit, Notizen
  */
-public class Exersice {
+public class Exercise {
 
     private final String name;
     private final int numberSets;
-    private final List<Integer> reps;
-    private final List<Double> weight;
+    private final Map<Integer, Integer> reps;
+    private final Map<Integer, Double> weight;
     private final Double breakTime;
     private final Optional<String> notes;
 
     // Constructor
-    public Exersice(String name, int numberSets, Double breakTime) {
+    public Exercise(String name, int numberSets, Double breakTime) {
         this.name = name;
         this.numberSets = numberSets;
-        this.reps = new ArrayList<>();
-        this.weight = new ArrayList<>();
+        this.reps = new HashMap<>();
+        this.weight = new HashMap<>();
         this.breakTime = breakTime;
         this.notes = Optional.empty();
+    }
+
+    // TODO
+    public void setName(String name) {
+
     }
 
     // TODO
@@ -36,7 +43,9 @@ public class Exersice {
 
     // TODO
     public boolean setReps(int set, int reps) {
-        return true;
+        this.reps.put(set, reps);
+
+        return this.reps.containsValue(reps);
     }
 
     // TODO
@@ -56,11 +65,11 @@ public class Exersice {
         return this.numberSets;
     }
 
-    public List<Integer> getReps() {
-        return this.reps;
+    public int getReps(int set, int reps) {
+        return this.reps.get(set);
     }
 
-    public List<Double> getWeight() {
+    public Double getWeight(int set, Double weight) {
         return this.weight;
     }
 
